@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const ProgramList = () => {
+const TvPrograms = () => {
 
-return (
+    const [programs, setPrograms] = useState([]);
 
-    <div>
-    <h1 className="channel-title">SVT 1</h1>
-    <ul className="program-list">
-        <li className="program-list__item">
-            13:00 <br />
-            Vinterstudion
-        </li>
-        <li className="program-list__item">
-            13:30 <br />
-            Aplint: VM
-        </li>
-        <li className="program-list__item">
-            14:30 <br />
-            Vinterstudion
-        </li>
-    </ul>
-  </div>
+useEffect(() => {
+    const fetchPrograms = async () => {
+        const response = await fetch('https://tv-api-p2x2o.ondigitalocean.app/SVT 1.json');
+        const data = await response.json();
+        setPrograms(data);
+    };
+    if (!programs.length) {
+        fetchPrograms();
+    }
+});
 
-)};
+const renderListItem = (program) => (
+    <li className="program-list__item">
+        {program.start}
+        <br />
+        {program.name}
+    </li>
+);
 
-export default ProgramList;
+    return (
+        <div>
+            <h1 className="channel-title">SVT 1</h1>
+            <ul className="program-list">
+                {programs.map(renderListItem)}
+            </ul>
+        </div>
+
+    )
+};
+
+export default TvPrograms;
