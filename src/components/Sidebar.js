@@ -2,12 +2,12 @@ import React from 'react'
 
 const Sidebar = () => {
     return (
-        <div class="menu">
-            <a class="menu__link" href="">SVT 1</a>
-            <a class="menu__link" href="">SVT 2</a>
-            <a class="menu__link" href="">SVT Barn</a>
-            <a class="menu__link" href="">Kunskapskanalen</a>
-            <a class="menu__link" href="">SVT 24</a>
+        <div className="menu">
+            <a className="menu__link" href="">SVT 1</a>
+            <a className="menu__link" href="">SVT 2</a>
+            <a className="menu__link" href="">SVT Barn</a>
+            <a className="menu__link" href="">Kunskapskanalen</a>
+            <a className="menu__link" href="">SVT 24</a>
         </div>
     )
 }
