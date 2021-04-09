@@ -23,13 +23,28 @@ const TvPrograms = ({ channel }) => {
     );
 
     return (
-        <div>
+        <div className="container">
+        <div className="row">
+
+          <div className="col-sm">
+          </div>
+
+          <div className="col-sm-6">
+
+          <div>
             <h1 className="channel-title">{channel}</h1>
             <ul className="program-list">
                 {programs.map(renderListItem)}
             </ul>
         </div>
+            
+          </div>
 
+          <div className="col-sm">
+          </div>
+          
+        </div>
+      </div>
     )
 };
 

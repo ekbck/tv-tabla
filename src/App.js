@@ -11,21 +11,7 @@ function App() {
     <div className="App">
       <div>
         <Sidebar setChannel={setChannel}/>
-      </div>
-      <div className="container">
-        <div className="row">
-
-          <div className="col-sm">
-          </div>
-
-          <div className="col-sm-6">
-            <ProgramList channel={channel} />
-          </div>
-
-          <div className="col-sm">
-          </div>
-          
-        </div>
+        <ProgramList channel={channel} />
       </div>
     </div>
 
