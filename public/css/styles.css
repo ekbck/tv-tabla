@@ -49,5 +49,6 @@ body {
 
 .program-list__item {
     border-top: 1px solid lightgray;
-    padding: 10px;
+    padding: 0.75em;
+    text-align: left;
 }

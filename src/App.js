@@ -1,12 +1,16 @@
 import './App.css';
+import {useState} from 'react';
 import Sidebar from './components/Sidebar';
 import ProgramList from './components/ProgramList';
 
 function App() {
+
+  const [channel , setChannel] = useState("SVT 1");
+
   return (
     <div className="App">
       <div>
-        <Sidebar />
+        <Sidebar setChannel={setChannel}/>
       </div>
       <div className="container">
         <div className="row">
@@ -15,7 +19,7 @@ function App() {
           </div>
 
           <div className="col-sm-6">
-            <ProgramList />
+            <ProgramList channel={channel} />
           </div>
 
           <div className="col-sm">

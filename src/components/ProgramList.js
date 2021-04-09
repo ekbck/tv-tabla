@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
-const TvPrograms = () => {
+const TvPrograms = ({ channel }) => {
 
     const [programs, setPrograms] = useState([]);
 
-useEffect(() => {
-    const fetchPrograms = async () => {
-        const response = await fetch('https://tv-api-p2x2o.ondigitalocean.app/SVT 1.json');
-        const data = await response.json();
-        setPrograms(data);
-    };
-    if (!programs.length) {
-        fetchPrograms();
-    }
-});
+    const url = `https://tv-api-p2x2o.ondigitalocean.app/${channel}.json`;
 
-const renderListItem = (program) => (
-    <li className="program-list__item">
-        {program.start}
-        <br />
-        {program.name}
-    </li>
-);
+    useEffect(async () => {
+            const response = await fetch(url);
+            const data = await response.json();
+            setPrograms(data);
+        }, [channel]);
+
+
+    const renderListItem = (program) => (
+        <li className="program-list__item">
+            {moment(program.start).format('HH:mm')}
+            <br />
+            {program.name}
+        </li>
+    );
 
     return (
         <div>
-            <h1 className="channel-title">SVT 1</h1>
+            <h1 className="channel-title">{channel}</h1>
             <ul className="program-list">
                 {programs.map(renderListItem)}
             </ul>
