@@ -8,15 +8,33 @@ const TvPrograms = ({ channel }) => {
     const url = `https://tv-api-p2x2o.ondigitalocean.app/${channel}.json`;
 
     useEffect(async () => {
-            const response = await fetch(url);
-            const data = await response.json();
-            setPrograms(data);
-        }, [channel]);
+        const response = await fetch(url);
+        let data = await response.json();
 
+        for(var JSONelement of data) {
+            JSONelement.start = moment(JSONelement.start).format('HH:mm');
+        }
+
+        data.sort(sortProgramms("start"));
+
+        setPrograms(data);
+
+    }, [channel]);
+
+    function sortProgramms(prop) {
+        return function(a, b) {    
+            if (a[prop] > b[prop]) {    
+                return 1;    
+            } else if (a[prop] < b[prop]) {    
+                return -1;    
+            }    
+            return 0;    
+        }    
+    }
 
     const renderListItem = (program) => (
         <li className="program-list__item">
-            {moment(program.start).format('HH:mm')}
+            {program.start}
             <br />
             {program.name}
         </li>
@@ -24,27 +42,27 @@ const TvPrograms = ({ channel }) => {
 
     return (
         <div className="container">
-        <div className="row">
+            <div className="row">
 
-          <div className="col-sm">
-          </div>
+                <div className="col-sm">
+                </div>
 
-          <div className="col-sm-6">
+                <div className="col-sm-6">
 
-          <div>
-            <h1 className="channel-title">{channel}</h1>
-            <ul className="program-list">
-                {programs.map(renderListItem)}
-            </ul>
+                    <div>
+                        <h1 className="channel-title">{channel}</h1>
+                        <ul className="program-list">
+                            {programs.map(renderListItem)}
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div className="col-sm">
+                </div>
+
+            </div>
         </div>
-            
-          </div>
-
-          <div className="col-sm">
-          </div>
-          
-        </div>
-      </div>
     )
 };
 
